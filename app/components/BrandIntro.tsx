@@ -27,7 +27,7 @@ export function BrandIntro() {
           Engineered calm, not wellness fluff.
         </h2>
         <p className="mt-5 max-w-2xl text-lg text-ink/80">
-          Most wellness brands sell softness — candles, pastels, &ldquo;just breathe.&rdquo;
+          Most wellness brands sell softness — candles, pastels, &ldquo;soft affirmations.&rdquo;
           Calm Blueprint sells something its audience actually respects: engineering. We treat
           a dysregulated nervous system the way a founder treats a broken system — diagnose the
           root cause, apply a sequenced protocol, measure the result.
