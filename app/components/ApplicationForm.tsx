@@ -19,6 +19,7 @@ export function ApplicationForm() {
   const [form, setForm] = useState<ApplicationInput>(EMPTY_FORM);
   const [errors, setErrors] = useState<ApplicationErrors>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [formError, setFormError] = useState<string | null>(null);
 
   function update<K extends keyof ApplicationInput>(key: K, value: ApplicationInput[K]) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -26,6 +27,7 @@ export function ApplicationForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setFormError(null);
     const { valid, errors: validationErrors } = validateApplication(form);
     setErrors(validationErrors);
     if (!valid) return;
@@ -46,7 +48,7 @@ export function ApplicationForm() {
       setStatus("success");
     } catch {
       setStatus("idle");
-      setErrors({ name: "Something went wrong. Please try again." });
+      setFormError("Something went wrong. Please try again.");
     }
   }
 
@@ -75,7 +77,7 @@ export function ApplicationForm() {
               type="text"
               value={form.name}
               onChange={(e) => update("name", e.target.value)}
-              className="w-full rounded-md border border-mist/50 bg-white px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
+              className="w-full rounded-md border border-mist/50 bg-porcelain px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
             />
           </Field>
 
@@ -84,7 +86,7 @@ export function ApplicationForm() {
               type="email"
               value={form.email}
               onChange={(e) => update("email", e.target.value)}
-              className="w-full rounded-md border border-mist/50 bg-white px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
+              className="w-full rounded-md border border-mist/50 bg-porcelain px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
             />
           </Field>
 
@@ -92,7 +94,7 @@ export function ApplicationForm() {
             <select
               value={form.platform}
               onChange={(e) => update("platform", e.target.value)}
-              className="w-full rounded-md border border-mist/50 bg-white px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
+              className="w-full rounded-md border border-mist/50 bg-porcelain px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
             >
               <option value="">Select a platform</option>
               {PLATFORMS.map((platform) => (
@@ -109,7 +111,7 @@ export function ApplicationForm() {
               value={form.profileLink}
               onChange={(e) => update("profileLink", e.target.value)}
               placeholder="https://"
-              className="w-full rounded-md border border-mist/50 bg-white px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
+              className="w-full rounded-md border border-mist/50 bg-porcelain px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
             />
           </Field>
 
@@ -119,7 +121,7 @@ export function ApplicationForm() {
               value={form.audienceSize}
               onChange={(e) => update("audienceSize", e.target.value)}
               placeholder="e.g. 120K followers"
-              className="w-full rounded-md border border-mist/50 bg-white px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
+              className="w-full rounded-md border border-mist/50 bg-porcelain px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
             />
           </Field>
 
@@ -128,9 +130,13 @@ export function ApplicationForm() {
               value={form.note}
               onChange={(e) => update("note", e.target.value)}
               rows={3}
-              className="w-full rounded-md border border-mist/50 bg-white px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
+              className="w-full rounded-md border border-mist/50 bg-porcelain px-4 py-2.5 text-ink focus:border-brass focus:outline-none"
             />
           </Field>
+
+          {formError && (
+            <p className="text-sm text-error">{formError}</p>
+          )}
 
           <button
             type="submit"
@@ -158,7 +164,7 @@ function Field({
     <label className="block">
       <span className="mb-1.5 block text-sm font-medium text-ink">{label}</span>
       {children}
-      {error && <span className="mt-1 block text-sm text-red-700">{error}</span>}
+      {error && <span className="mt-1 block text-sm text-error">{error}</span>}
     </label>
   );
 }

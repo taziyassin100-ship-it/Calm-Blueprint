@@ -9,6 +9,7 @@
   --color-porcelain: #fbf9f3;
   --color-brass: #c4a35a;
   --color-brass-soft: #c9b68a;
+  --color-error: #b25a45;
 
   --font-serif: var(--font-fraunces);
   --font-sans: var(--font-inter);
