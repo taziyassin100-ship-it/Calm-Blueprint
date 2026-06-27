@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-midnight: #122337;
+  --color-ink: #0b1620;
+  --color-slate: #5c7894;
+  --color-mist: #b7c7d6;
+  --color-bone: #f2ebdb;
+  --color-porcelain: #fbf9f3;
+  --color-brass: #c4a35a;
+  --color-brass-soft: #c9b68a;
+
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-plex-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Brand palette is fixed by design — sections go dark/light intentionally, not via OS dark mode. */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-porcelain);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-slate);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.eyebrow::before {
+  content: "";
+  width: 34px;
+  height: 1px;
+  background: var(--color-brass);
+}
+.eyebrow-on-dark {
+  color: var(--color-mist);
+}
+
+.bg-blueprint-grid {
+  background-image: linear-gradient(var(--color-mist) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-mist) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.datum-line {
+  position: relative;
+  height: 1px;
+  background: var(--color-mist);
+  opacity: 0.35;
+}
+.datum-line::before,
+.datum-line::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  width: 1px;
+  height: 7px;
+  background: var(--color-brass);
+}
+.datum-line::before {
+  left: 0;
+}
+.datum-line::after {
+  right: 0;
 }
