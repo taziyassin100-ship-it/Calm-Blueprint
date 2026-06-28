@@ -1,23 +1,38 @@
-import { BrandMark } from "./BrandMark";
+"use client";
+
+import { useEffect, useState } from "react";
 import { Container } from "./Container";
+import { Wordmark } from "./BrandMark";
+import { CtaButton } from "./CtaButton";
 
 export function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="border-b border-mist/30 bg-porcelain/90 backdrop-blur sticky top-0 z-20">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled
+          ? "border-b border-line bg-ink/90 backdrop-blur"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
       <Container className="flex items-center justify-between py-4">
-        <div className="flex items-center gap-3">
-          <BrandMark size={32} />
-          <div className="flex flex-col leading-none">
-            <span className="font-serif text-lg font-medium text-midnight">CALM</span>
-            <span className="font-mono text-[10px] tracking-[0.5em] text-slate">BLUEPRINT</span>
-          </div>
-        </div>
         <a
-          href="#apply"
-          className="rounded-full border border-midnight px-5 py-2 text-sm font-medium text-midnight transition-colors hover:bg-midnight hover:text-bone focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brass"
+          href="#top"
+          className="rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass"
         >
-          Apply to partner
+          <Wordmark />
         </a>
+        <CtaButton className="px-6 py-2.5 text-[13px]">
+          Apply to partner →
+        </CtaButton>
       </Container>
     </header>
   );

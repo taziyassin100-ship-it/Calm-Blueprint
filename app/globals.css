@@ -1,72 +1,81 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-midnight: #122337;
-  --color-ink: #0b1620;
-  --color-slate: #5c7894;
-  --color-mist: #b7c7d6;
-  --color-bone: #f2ebdb;
-  --color-porcelain: #fbf9f3;
-  --color-brass: #c4a35a;
-  --color-brass-soft: #c9b68a;
-  --color-error: #b25a45;
+  --color-ink: #0b1622;
+  --color-ink-panel: #101f30;
+  --color-ink-card: #15263a;
+  --color-ink-deep: #07101a;
+  --color-line: #24384f;
+  --color-bone: #f4f1e9;
+  --color-bone-dim: #aeb9c4;
+  --color-muted: #6e7e8e;
+  --color-brass: #c9a24b;
+  --color-brass-light: #d9b65f;
+  --color-brass-soft: rgba(201, 162, 75, 0.12);
 
   --font-serif: var(--font-fraunces);
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-plex-mono);
 }
 
-/* Brand palette is fixed by design — sections go dark/light intentionally, not via OS dark mode. */
+html {
+  scroll-behavior: smooth;
+  /* keep #apply clear of the sticky nav */
+  scroll-padding-top: 96px;
+}
+
 body {
-  background: var(--color-porcelain);
-  color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-bone-dim);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-slate);
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.eyebrow::before {
-  content: "";
-  width: 34px;
-  height: 1px;
+::selection {
   background: var(--color-brass);
-}
-.eyebrow-on-dark {
-  color: var(--color-mist);
+  color: var(--color-ink);
 }
 
-.bg-blueprint-grid {
-  background-image: linear-gradient(var(--color-mist) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-mist) 1px, transparent 1px);
+/* Faint blueprint grid behind dark surfaces — present but quiet. */
+.blueprint-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(36, 56, 79, 0.4) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(36, 56, 79, 0.4) 1px, transparent 1px);
   background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 35%,
+    #000 0%,
+    transparent 80%
+  );
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 35%,
+    #000 0%,
+    transparent 80%
+  );
 }
 
-.datum-line {
-  position: relative;
-  height: 1px;
-  background: var(--color-mist);
-  opacity: 0.35;
+/* Scroll reveal — opacity + transform only. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
 }
-.datum-line::before,
-.datum-line::after {
-  content: "";
-  position: absolute;
-  top: -3px;
-  width: 1px;
-  height: 7px;
-  background: var(--color-brass);
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
-.datum-line::before {
-  left: 0;
-}
-.datum-line::after {
-  right: 0;
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -15,16 +15,10 @@ const inter = Inter({
   weight: ["400", "500", "600"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
 export const metadata: Metadata = {
   title: "Calm Blueprint — Partner Program",
   description:
-    "Become a Calm Blueprint affiliate partner. Founding partners earn 70% commission — we only make money when you make money.",
+    "Become a Calm Blueprint founding partner. Earn up to 70% per sale on evidence-based sleep, stress, and focus protocols — no fee to join, no inventory, nothing to create.",
 };
 
 export default function RootLayout({
@@ -35,9 +29,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-ink">{children}</body>
     </html>
   );
 }

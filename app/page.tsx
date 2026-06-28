@@ -1,12 +1,15 @@
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
-import { OfferTeaser } from "./components/OfferTeaser";
-import { BrandIntro } from "./components/BrandIntro";
-import { AudienceFit } from "./components/AudienceFit";
-import { PartnershipDetails } from "./components/PartnershipDetails";
+import { BannerStrip } from "./components/BannerStrip";
+import { StatBar } from "./components/StatBar";
+import { WhatYouGet } from "./components/WhatYouGet";
+import { WhyYourAudience } from "./components/WhyYourAudience";
+import { Partners } from "./components/Partners";
+import { Partnership } from "./components/Partnership";
+import { TheFit } from "./components/TheFit";
 import { HowItWorks } from "./components/HowItWorks";
 import { Faq } from "./components/Faq";
-import { ApplicationForm } from "./components/ApplicationForm";
+import { ApplyForm } from "./components/ApplyForm";
 import { Footer } from "./components/Footer";
 
 export default function Home() {
@@ -15,13 +18,16 @@ export default function Home() {
       <Nav />
       <main className="flex-1">
         <Hero />
-        <OfferTeaser />
-        <BrandIntro />
-        <AudienceFit />
-        <PartnershipDetails />
+        <BannerStrip />
+        <StatBar />
+        <WhatYouGet />
+        <WhyYourAudience />
+        <Partners />
+        <Partnership />
+        <TheFit />
         <HowItWorks />
         <Faq />
-        <ApplicationForm />
+        <ApplyForm />
       </main>
       <Footer />
     </div>
