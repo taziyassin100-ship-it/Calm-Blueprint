@@ -8,7 +8,7 @@ import { CtaButton } from "./CtaButton";
 export function Nav({
   brandHref = "#top",
   showCta = true,
-  ctaHref = "#apply",
+  ctaHref = "/partners/start",
   ctaLabel = "Apply to partner →",
 }: {
   brandHref?: string;

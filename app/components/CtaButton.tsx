@@ -2,11 +2,11 @@ import type { ReactNode } from "react";
 import { brassButtonClass } from "./buttonStyles";
 
 // The single repeated conversion action — a solid brass pill that
-// smooth-scrolls to the application form.
+// sends visitors to the partner "how it starts" page.
 export function CtaButton({
   children = "Apply to partner →",
   className = "",
-  href = "#apply",
+  href = "/partners/start",
 }: {
   children?: ReactNode;
   className?: string;
