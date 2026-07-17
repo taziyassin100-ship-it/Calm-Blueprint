@@ -16,9 +16,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Calm Blueprint — Partner Program",
+  title: "Calm Blueprint Partner Program",
   description:
-    "Become a Calm Blueprint founding partner. Earn up to 70% per sale on evidence-based sleep, stress, and focus protocols — no fee to join, no inventory, nothing to create.",
+    "Become a Calm Blueprint partner. Earn up to 70% per sale on evidence-based sleep, stress, and focus protocols. No fee to join, no inventory, nothing to create.",
 };
 
 export default function RootLayout({
@@ -31,7 +31,13 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-ink">{children}</body>
+      <body className="min-h-full flex flex-col bg-ink">
+        <noscript>
+          {/* Without JS the scroll-reveal never triggers — keep content visible. */}
+          <style>{`.reveal{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

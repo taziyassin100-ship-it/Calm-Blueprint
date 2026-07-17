@@ -30,7 +30,7 @@ export function BrandMark({ size = 28, className }: BrandMarkProps) {
           strokeWidth="3"
         />
       </g>
-      <circle cx="74" cy="50" r="3.6" fill="#C9A24B" />
+      <circle cx="74" cy="50" r="3.6" fill="#E8B53E" />
     </svg>
   );
 }

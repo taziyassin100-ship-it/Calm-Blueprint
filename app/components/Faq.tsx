@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import { Container } from "./Container";
-import { Eyebrow } from "./Eyebrow";
+import { SectionHeader } from "./SectionHeader";
 import { Reveal } from "./Reveal";
 
-const FAQS = [
+type FaqItem = { q: string; a: string };
+
+const FAQS: FaqItem[] = [
   {
     q: "How much do I earn?",
-    a: "Up to 40% standard — and up to 70% right now, for our founding cohort. Earnings scale with how the product lands with your audience; we don't promise a fixed number.",
+    a: "40% standard, and up to 70% right now, while the offer is open. Earnings scale with how the product lands with your audience; we don't promise a fixed number.",
   },
   {
     q: "Is there a cost to join?",
@@ -20,7 +22,7 @@ const FAQS = [
   },
   {
     q: "Do I have to create content or hit a quota?",
-    a: "No content minimums, no quotas. Mention it once or build it into your regular content — your call.",
+    a: "No content minimums, no quotas. Mention it once or build it into your regular content. Your call.",
   },
   {
     q: "Do I need a certain audience size?",
@@ -28,28 +30,29 @@ const FAQS = [
   },
   {
     q: "How do payouts work?",
-    a: "We'll walk you through the specifics once you apply — happy to answer directly.",
+    a: "We'll walk you through the specifics once you apply. Happy to answer directly.",
   },
 ];
 
-export function Faq() {
+export function Faq({
+  eyebrow = "Questions",
+  title = "Before you apply",
+  items = FAQS,
+}: {
+  eyebrow?: string;
+  title?: string;
+  items?: FaqItem[];
+} = {}) {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-ink-panel">
+    <section className="bg-grad-panel">
       <Container className="py-24 sm:py-32">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow centered>Questions</Eyebrow>
-            <h2 className="mt-6 font-serif text-3xl font-medium leading-tight tracking-[-0.01em] text-bone sm:text-4xl md:text-[2.75rem]">
-              Before you apply
-            </h2>
-          </div>
-        </Reveal>
+        <SectionHeader eyebrow={eyebrow} title={title} />
 
         <Reveal>
           <div className="mx-auto mt-12 max-w-3xl divide-y divide-line border-y border-line">
-            {FAQS.map((item, i) => {
+            {items.map((item, i) => {
               const isOpen = open === i;
               return (
                 <div key={item.q}>

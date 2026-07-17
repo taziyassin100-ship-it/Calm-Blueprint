@@ -1,5 +1,5 @@
 import { Container } from "./Container";
-import { Eyebrow } from "./Eyebrow";
+import { SectionHeader } from "./SectionHeader";
 import { Reveal } from "./Reveal";
 
 /*
@@ -11,7 +11,7 @@ import { Reveal } from "./Reveal";
 const CARDS = [
   {
     title: "A product that survives scrutiny.",
-    body: "Your audience is skeptical of wellness — that's the point. Every protocol leads with a mechanism, not a mood. It's built to be recommended to people who don't fall for fluff.",
+    body: "Your audience is skeptical of wellness, and that's the point. Every protocol leads with a mechanism, not a mood. It's built to be recommended to people who don't fall for fluff.",
   },
   {
     title: "Made for the audience you already have.",
@@ -19,28 +19,24 @@ const CARDS = [
   },
   {
     title: "Aligned incentives, in writing.",
-    body: "No fee, no quota, no risk on your side. You earn on results; we earn on results. That's the whole deal — and it's why the rate is what it is.",
+    body: "No fee, no quota, no risk on your side. You earn on results; we earn on results. That's the whole deal, and it's why the rate is what it is.",
   },
 ];
 
 export function Partners() {
   return (
-    <section className="bg-ink-panel">
+    <section className="bg-grad-panel">
       <Container className="py-24 sm:py-32">
-        <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow centered>Partners</Eyebrow>
-            <h2 className="mt-6 font-serif text-3xl font-medium leading-tight tracking-[-0.01em] text-bone sm:text-4xl md:text-[2.75rem]">
-              Built to be easy to recommend — and easy to earn from.
-            </h2>
-          </div>
-        </Reveal>
+        <SectionHeader
+          eyebrow="Partners"
+          title="Built to be easy to recommend, and easy to earn from."
+        />
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {CARDS.map((card, i) => (
             <Reveal key={card.title} delay={i * 100}>
               {/* Swap for a real testimonial card when available. */}
-              <article className="h-full rounded-2xl border border-line bg-ink-card p-8">
+              <article className="surface-card h-full rounded-2xl border border-line p-8">
                 <h3 className="text-lg font-semibold text-bone">{card.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-bone-dim">
                   {card.body}

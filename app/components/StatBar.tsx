@@ -9,28 +9,28 @@ type Stat = {
 };
 
 const iconClass =
-  "h-6 w-6 stroke-brass [stroke-width:1.6] fill-none [stroke-linecap:round] [stroke-linejoin:round]";
+  "icon-animated h-8 w-8 stroke-brass [stroke-width:1.9] fill-none [stroke-linecap:round] [stroke-linejoin:round]";
 
 const STATS: Stat[] = [
   {
     icon: (
       <svg viewBox="0 0 24 24" className={iconClass} aria-hidden="true">
-        <path d="M4 16l5-5 4 4 7-8" />
-        <path d="M16 3h4v4" />
+        <path d="M4 18l6-6 4 4 5.5-6.5" />
+        <path d="M14.5 9.5h5v5" />
       </svg>
     ),
     value: <span className="text-brass">Up to 70%</span>,
-    label: "Founding-partner commission",
+    label: "Partner commission",
   },
   {
     icon: (
       <svg viewBox="0 0 24 24" className={iconClass} aria-hidden="true">
         <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v10M9.5 9.2c0-1.2 1.1-2 2.5-2s2.5.8 2.5 2-1.1 1.8-2.5 1.8-2.5.6-2.5 1.8 1.1 2 2.5 2 2.5-.8 2.5-2" />
+        <path d="M12 6.5v11M14.5 9c0-1.2-1.1-2-2.6-2s-2.6.8-2.6 1.9 1.1 1.8 2.6 1.8 2.6.7 2.6 1.9-1.1 2-2.6 2-2.6-.8-2.6-2" />
       </svg>
     ),
     value: <span className="text-brass">$0</span>,
-    label: "To join — no fee, no subscription",
+    label: "To join, no fee or subscription",
   },
   {
     icon: (
@@ -60,10 +60,10 @@ const STATS: Stat[] = [
 
 export function StatBar() {
   return (
-    <section className="bg-ink">
+    <section className="bg-grad-ink">
       <Container className="py-16 sm:py-20">
         <Reveal>
-          <dl className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:gap-y-0 md:divide-x md:divide-line">
+          <dl className="grid grid-cols-2 gap-y-12 md:grid-cols-4 md:gap-y-0 md:divide-x md:divide-line">
             {STATS.map((stat, i) => (
               <div
                 key={i}
