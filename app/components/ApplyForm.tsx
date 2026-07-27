@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from "react";
-import { Container } from "./Container";
-import { Reveal } from "./Reveal";
 import { SectionHeader } from "./SectionHeader";
 import { brassButtonClass } from "./buttonStyles";
 import {
@@ -94,124 +92,121 @@ export function ApplyForm() {
   }
 
   return (
-    <section id="apply" className="scroll-mt-24 bg-grad-ink">
-      <Container className="py-24 sm:py-32">
-        <SectionHeader eyebrow="Apply" title="Apply to become a partner" />
+    <div>
+      <SectionHeader eyebrow="Apply" title="Apply to become a partner" />
 
-        <Reveal>
-          <div className="surface-card glow-brass mx-auto mt-12 max-w-2xl rounded-2xl border border-line p-7 sm:p-10">
-            {status === "success" ? (
-              <div className="py-10 text-center" role="status">
-                <h3 className="font-serif text-2xl text-bone">
-                  Application received.
-                </h3>
-                <p className="mt-3 text-bone-dim">We&rsquo;ll be in touch.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} noValidate className="grid gap-6">
-                <Field id="field-name" label="Name" error={errors.name}>
-                  <input
-                    id="field-name"
-                    type="text"
-                    autoComplete="name"
-                    value={form.name}
-                    onChange={(e) => update("name", e.target.value)}
-                    aria-invalid={!!errors.name}
-                    aria-describedby={errors.name ? "field-name-error" : undefined}
-                    className={fieldClass}
-                  />
-                </Field>
-
-                <Field id="field-email" label="Email" error={errors.email}>
-                  <input
-                    id="field-email"
-                    type="email"
-                    autoComplete="email"
-                    value={form.email}
-                    onChange={(e) => update("email", e.target.value)}
-                    aria-invalid={!!errors.email}
-                    aria-describedby={errors.email ? "field-email-error" : undefined}
-                    className={fieldClass}
-                  />
-                </Field>
-
-                <Field id="field-platform" label="Primary platform" error={errors.platform}>
-                  <select
-                    id="field-platform"
-                    value={form.platform}
-                    onChange={(e) => update("platform", e.target.value)}
-                    aria-invalid={!!errors.platform}
-                    aria-describedby={errors.platform ? "field-platform-error" : undefined}
-                    className={fieldClass}
-                  >
-                    <option value="">Select a platform</option>
-                    {PLATFORMS.map((p) => (
-                      <option key={p} value={p}>
-                        {p}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-
-                <Field id="field-profileLink" label="Profile link" error={errors.profileLink}>
-                  <input
-                    id="field-profileLink"
-                    type="text"
-                    inputMode="url"
-                    value={form.profileLink}
-                    onChange={(e) => update("profileLink", e.target.value)}
-                    placeholder="https://"
-                    aria-invalid={!!errors.profileLink}
-                    aria-describedby={errors.profileLink ? "field-profileLink-error" : undefined}
-                    className={fieldClass}
-                  />
-                </Field>
-
-                <Field id="field-audienceSize" label="Audience size" error={errors.audienceSize}>
-                  <input
-                    id="field-audienceSize"
-                    type="text"
-                    value={form.audienceSize}
-                    onChange={(e) => update("audienceSize", e.target.value)}
-                    placeholder="e.g. 120K followers"
-                    aria-invalid={!!errors.audienceSize}
-                    aria-describedby={errors.audienceSize ? "field-audienceSize-error" : undefined}
-                    className={fieldClass}
-                  />
-                </Field>
-
-                <Field id="field-note" label="Anything else we should know? (optional)">
-                  <textarea
-                    id="field-note"
-                    value={form.note}
-                    onChange={(e) => update("note", e.target.value)}
-                    rows={3}
-                    className={fieldClass}
-                  />
-                </Field>
-
-                {formError && (
-                  <p
-                    role="alert"
-                    className="rounded-lg border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
-                  >
-                    {formError}
-                  </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === "submitting"}
-                  className={`${brassButtonClass} mt-2 w-full disabled:opacity-60`}
-                >
-                  {status === "submitting" ? "Submitting…" : "Submit application"}
-                </button>
-              </form>
-            )}
+      <div className="mt-10">
+        {status === "success" ? (
+          <div className="py-10 text-center" role="status">
+            <h3 className="font-serif text-2xl text-bone">
+              Application received.
+            </h3>
+            <p className="mt-3 text-bone-dim">We&rsquo;ll be in touch.</p>
           </div>
-        </Reveal>
-      </Container>
-    </section>
+        ) : (
+          <form onSubmit={handleSubmit} noValidate className="grid gap-6">
+            <Field id="field-name" label="Name" error={errors.name}>
+              <input
+                id="field-name"
+                type="text"
+                autoComplete="name"
+                autoFocus
+                value={form.name}
+                onChange={(e) => update("name", e.target.value)}
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "field-name-error" : undefined}
+                className={fieldClass}
+              />
+            </Field>
+
+            <Field id="field-email" label="Email" error={errors.email}>
+              <input
+                id="field-email"
+                type="email"
+                autoComplete="email"
+                value={form.email}
+                onChange={(e) => update("email", e.target.value)}
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "field-email-error" : undefined}
+                className={fieldClass}
+              />
+            </Field>
+
+            <Field id="field-platform" label="Primary platform" error={errors.platform}>
+              <select
+                id="field-platform"
+                value={form.platform}
+                onChange={(e) => update("platform", e.target.value)}
+                aria-invalid={!!errors.platform}
+                aria-describedby={errors.platform ? "field-platform-error" : undefined}
+                className={fieldClass}
+              >
+                <option value="">Select a platform</option>
+                {PLATFORMS.map((p) => (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                ))}
+              </select>
+            </Field>
+
+            <Field id="field-profileLink" label="Profile link" error={errors.profileLink}>
+              <input
+                id="field-profileLink"
+                type="text"
+                inputMode="url"
+                value={form.profileLink}
+                onChange={(e) => update("profileLink", e.target.value)}
+                placeholder="https://"
+                aria-invalid={!!errors.profileLink}
+                aria-describedby={errors.profileLink ? "field-profileLink-error" : undefined}
+                className={fieldClass}
+              />
+            </Field>
+
+            <Field id="field-audienceSize" label="Audience size" error={errors.audienceSize}>
+              <input
+                id="field-audienceSize"
+                type="text"
+                value={form.audienceSize}
+                onChange={(e) => update("audienceSize", e.target.value)}
+                placeholder="e.g. 120K followers"
+                aria-invalid={!!errors.audienceSize}
+                aria-describedby={errors.audienceSize ? "field-audienceSize-error" : undefined}
+                className={fieldClass}
+              />
+            </Field>
+
+            <Field id="field-note" label="Anything else we should know? (optional)">
+              <textarea
+                id="field-note"
+                value={form.note}
+                onChange={(e) => update("note", e.target.value)}
+                rows={3}
+                className={fieldClass}
+              />
+            </Field>
+
+            {formError && (
+              <p
+                role="alert"
+                className="rounded-lg border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+              >
+                {formError}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={status === "submitting"}
+              className={`${brassButtonClass} mt-2 w-full disabled:opacity-60`}
+            >
+              {status === "submitting" ? "Submitting…" : "Submit application"}
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
   );
 }
 

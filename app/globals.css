@@ -21,7 +21,6 @@
 
 html {
   scroll-behavior: smooth;
-  /* keep #apply clear of the sticky nav */
   scroll-padding-top: 96px;
 }
 

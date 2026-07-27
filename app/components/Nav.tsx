@@ -5,17 +5,7 @@ import { Container } from "./Container";
 import { Wordmark } from "./BrandMark";
 import { CtaButton } from "./CtaButton";
 
-export function Nav({
-  brandHref = "#top",
-  showCta = true,
-  ctaHref = "/partners/start",
-  ctaLabel = "Apply to partner →",
-}: {
-  brandHref?: string;
-  showCta?: boolean;
-  ctaHref?: string;
-  ctaLabel?: string;
-} = {}) {
+export function Nav() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -35,16 +25,14 @@ export function Nav({
     >
       <Container className="flex items-center justify-between py-4">
         <a
-          href={brandHref}
+          href="#top"
           className="rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass"
         >
           <Wordmark />
         </a>
-        {showCta && (
-          <CtaButton href={ctaHref} className="px-6 py-2.5 text-[13px]">
-            {ctaLabel}
-          </CtaButton>
-        )}
+        <CtaButton className="px-6 py-2.5 text-[13px]">
+          Apply to partner →
+        </CtaButton>
       </Container>
     </header>
   );

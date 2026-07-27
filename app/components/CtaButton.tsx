@@ -1,23 +1,26 @@
+"use client";
+
 import type { ReactNode } from "react";
 import { brassButtonClass } from "./buttonStyles";
+import { useApplyModal } from "./ApplyModalContext";
 
 // The single repeated conversion action — a solid brass pill that
-// sends visitors to the partner "how it starts" page.
+// pops the application form open over the page.
 export function CtaButton({
   children = "Apply to partner →",
   className = "",
-  href = "/partners/start",
 }: {
   children?: ReactNode;
   className?: string;
-  href?: string;
 }) {
+  const { open } = useApplyModal();
   return (
-    <a
-      href={href}
+    <button
+      type="button"
+      onClick={open}
       className={`${brassButtonClass} hover:-translate-y-0.5 ${className}`}
     >
       {children}
-    </a>
+    </button>
   );
 }
